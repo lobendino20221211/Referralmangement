@@ -84,7 +84,7 @@ app.use('/api/ai-prescriptions', aiPrescriptionRoutes);
 require('dotenv').config();
 
 // ===== Default route - Login Page =====
-app.get('/', (req, res) => {
+app.get('/LoginForm.html', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/pages/LoginForm.html'));
 });
 
@@ -175,4 +175,5 @@ app.listen(PORT, () => {
 const analyticsRoutes = require('./routes/analytics');
 
 // Register the routes
+
 app.use('/api/analytics', analyticsRoutes);
