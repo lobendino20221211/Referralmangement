@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <link rel="stylesheet" href="../css/LoginForm.css">
+    <link rel="stylesheet" href="../assets/css/custom-alert.css">
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <form id="loginForm">
+            
+            <div class="logo">
+                <img src="/images/cscqcph (3).png" alt="School Logo">
+            </div>
+
+            <h1>Login</h1>
+
+            <div id="errorMessage" class="error-box" style="display: none;"></div> 
+            <div id="successMessage" style="display: none;"></div>
+
+            <!-- Username -->
+            <div class="input-box">
+                <input type="text" id="username" placeholder="Username" required>
+            </div>
+
+            <!-- Password -->
+            <div class="input-box">
+                <input type="password" id="password" placeholder="Password" required>
+            </div>
+
+            <!-- Remember / Forgot -->
+            <div class="remember-forgot">
+                <label><input type="checkbox"> Remember me</label>
+                <a href="#" id="forgotPasswordLink">Forgot Password?</a>
+            </div>
+
+            <!-- Login button -->
+            <button type="submit" class="login-btn">Login</button>
+
+        </form>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div id="forgotPasswordModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Forgot Password</h2>
+            <p>Enter your username and email to receive a temporary password.</p>
+
+            <input type="text" id="fpUsername" placeholder="Username" required>
+            <input type="email" id="fpEmail" placeholder="Email Address" required>
+            <button id="sendTempPasswordBtn">Send Temporary Password</button>
+            <div id="fpMessage" class="fp-message"></div>
+        </div>
+    </div>
+
+    <!-- API Client + Alert + Login JS -->
+    <script src="../api/api-client.js"></script>
+    <script src="../assets/js/custom-alert.js"></script>
+    <script src="../js/Login.js"></script>
+
+</body>
+</html>

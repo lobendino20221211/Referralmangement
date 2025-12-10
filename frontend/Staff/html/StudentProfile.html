@@ -1,0 +1,236 @@
+<!-- Counselor/Staff StudentProfile.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Counselor Portal - Student Profiles</title>
+  <!-- Google Icons -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../css/StudentProfile.css">
+  <link rel="stylesheet" href="../../assets/css/custom-alert.css">
+  
+</head>
+<body>
+  <!-- Sidebar Navigation -->
+  <aside class="sidebar">
+    <div class="logo-container">
+      <div class="logo-icon">
+        <span class="material-symbols-outlined">psychology</span>
+      </div>
+      <div class="logo-text">
+        <div class="logo-title">Counselor Portal</div>
+        <div class="logo-subtitle">Management System</div>
+      </div>
+    </div>
+
+    <nav class="nav-menu">
+      <div class="nav-section-title">NAVIGATION</div>
+      <a href="Dashboard.html" class="nav-item">
+        <span class="material-symbols-outlined">dashboard</span>
+        <div class="nav-text">
+          <div class="nav-title">Dashboard</div>
+          <div class="nav-subtitle">Overview and statistics</div>
+        </div>
+      </a>
+      <a href="StudentSubmissions.html" class="nav-item">
+        <span class="material-symbols-outlined">assignment</span>
+        <div class="nav-text">
+          <div class="nav-title">Student Submissions</div>
+          <div class="nav-subtitle">View all student submissions</div>
+        </div>
+      </a>
+      <a href="Referral.html" class="nav-item">
+        <span class="material-symbols-outlined">article</span>
+        <div class="nav-text">
+          <div class="nav-title">Referrals</div>
+          <div class="nav-subtitle">Manage student referrals</div>
+        </div>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Header -->
+    <header class="header">
+      <h1 class="page-title">Student Profiles</h1>
+      <div class="user-profile">
+        <div class="dropdown" id="profileDropdown">
+          <img src="your-profile.jpg" 
+               alt="User Profile" 
+               class="profile-image account-icon" 
+               id="profileButton">
+          <div class="dropdown-content">
+            <a href="ProfileSettings.html"><span class="material-symbols-outlined">manage_accounts</span>Profile Settings</a>
+            <a href="../../pages/LoginForm.html"><span class="material-symbols-outlined">logout</span>Logout</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Welcome Section -->
+    <section class="welcome-section" style="margin-bottom: 2rem;">
+      <div class="info-box" style="background: #f0fdf4; border-left: 4px solid #10b981;">
+        <p style="margin: 0; color: #065f46;">
+          <strong>👥 Student Directory</strong>
+        </p>
+        <p style="margin: 0.5rem 0 0 0; color: #065f46; font-size: 0.9rem;">
+          Select an adviser below to view their students. Students are managed by their assigned advisers.
+        </p>
+      </div>
+    </section>
+
+    <!-- View Toggle -->
+    <div class="view-toggle" style="margin-bottom: 1.5rem;">
+      <button id="adviserViewBtn" class="toggle-btn active">
+        <span class="material-symbols-outlined">people</span>
+        View by Adviser
+      </button>
+      <button id="studentViewBtn" class="toggle-btn">
+        <span class="material-symbols-outlined">school</span>
+        View All Students
+      </button>
+    </div>
+
+    <!-- Adviser List View -->
+    <section id="adviserListSection" class="student-list">
+      <div class="list-card">
+        <div class="list-filters">
+          <input type="text" id="adviserSearchInput" placeholder="Search advisers...">
+          <div class="student-count">
+            <span class="material-symbols-outlined">person</span>
+            <span id="adviserCount">0</span> Advisers
+          </div>
+        </div>
+      
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Adviser Name</th>
+                <th>Email</th>
+                <th>Department</th>
+                <th>Student Count</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="adviserTable">
+              <tr>
+                <td colspan="5" style="text-align:center;">Loading advisers...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Student List View (Hidden by default) -->
+    <section id="studentListSection" class="student-list" style="display: none;">
+      <div class="list-card">
+        <div class="list-filters">
+          <input type="text" id="studentSearchInput" placeholder="Search students...">
+          <select id="adviserFilter">
+            <option value="">All Advisers</option>
+          </select>
+          <select id="levelFilter">
+            <option value="">All Levels</option>
+            <option value="Elementary">Elementary</option>
+            <option value="JHS">Junior High School</option>
+            <option value="SHS">Senior High School</option>
+          </select>
+          <select id="gradeFilter">
+            <option value="">All Grades</option>
+          </select>
+          <div class="student-count">
+            <span class="material-symbols-outlined">groups</span>
+            <span id="studentCount">0</span> Students
+          </div>
+        </div>
+      
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Student ID</th>
+                <th>Student Name</th>
+                <th>Level</th>
+                <th>Grade</th>
+                <th>Adviser</th>
+                <th>Contact Number</th>
+              </tr>
+            </thead>
+            <tbody id="studentTable">
+              <tr>
+                <td colspan="6" style="text-align:center;">Loading students...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Adviser Students Modal -->
+  <div id="adviserStudentsModal" class="modal">
+    <div class="modal-content" style="max-width: 900px;">
+      <div class="modal-header">
+        <h2>
+          <span class="material-symbols-outlined">groups</span>
+          Students of <span id="modalAdviserName"></span>
+        </h2>
+        <span class="close">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div class="list-filters" style="margin-bottom: 1rem;">
+          <input type="text" id="modalSearchInput" placeholder="Search students...">
+          <select id="modalLevelFilter">
+            <option value="">All Levels</option>
+            <option value="Elementary">Elementary</option>
+            <option value="JHS">Junior High School</option>
+            <option value="SHS">Senior High School</option>
+          </select>
+          <select id="modalGradeFilter">
+            <option value="">All Grades</option>
+          </select>
+          <div class="student-count">
+            <span class="material-symbols-outlined">groups</span>
+            <span id="modalStudentCount">0</span> Students
+          </div>
+        </div>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Student ID</th>
+                <th>Student Name</th>
+                <th>Level</th>
+                <th>Grade</th>
+                <th>Contact Number</th>
+              </tr>
+            </thead>
+            <tbody id="modalStudentTable">
+              <tr>
+                <td colspan="5" style="text-align:center;">Loading students...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="closeModalBtn" class="btn-primary">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Load API Client first -->
+  <script src="../../api/api-client.js"></script>
+  <script src="../../assets/js/custom-alert.js"></script>
+  <script src="../../js/logout.js"></script>
+  <!-- Then load page-specific JS -->
+  <script src="../js/StudentProfile.js"></script>
+</body>
+</html>

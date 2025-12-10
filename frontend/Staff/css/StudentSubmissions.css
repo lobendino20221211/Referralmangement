@@ -1,0 +1,890 @@
+/* ============================================
+   STUDENT SUBMISSIONS PAGE - DARK THEME
+   Matching Referral.css Style
+   ============================================ */
+
+/* ============================================
+   CONTAINER & LAYOUT
+   ============================================ */
+
+.container {
+  padding: 24px 32px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.container h1 {
+  font-size: 2rem;
+  color: #10b981;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+/* ============================================
+   STATISTICS CARDS
+   ============================================ */
+
+.stats-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.stat-card {
+  background: #111;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  border-color: rgba(16, 185, 129, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+}
+
+.stat-card h3 {
+  font-size: 2rem;
+  color: #10b981;
+  margin: 0 0 0.5rem 0;
+  font-weight: 700;
+}
+
+.stat-card p {
+  color: #9ca3af;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* ============================================
+   FILTERS SECTION
+   ============================================ */
+
+.filters {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: #111;
+  border-radius: 12px;
+  align-items: center;
+  border: 1px solid rgba(51, 51, 51, 0.8);
+}
+
+.filters select,
+.filters input[type="text"] {
+  padding: 10px 14px;
+  border: 1px solid #333;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  background: #222;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filters select:hover,
+.filters input[type="text"]:hover {
+  border-color: #10b981;
+}
+
+.filters select:focus,
+.filters input[type="text"]:focus {
+  outline: none;
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+.filters input[type="text"] {
+  flex: 1;
+  max-width: 400px;
+}
+
+.filters input[type="text"]::placeholder {
+  color: #6b7280;
+}
+
+/* Dropdown arrow for select */
+.filters select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ffffff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 40px;
+}
+
+/* ============================================
+   TABLE STYLES
+   ============================================ */
+
+#submissionsTable {
+  width: 100%;
+  background: #111;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  border-collapse: collapse;
+}
+
+#submissionsTable thead {
+  background: #1a1a1a;
+  color: #10b981;
+}
+
+#submissionsTable thead th {
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #333;
+}
+
+#submissionsTable tbody tr {
+  border-bottom: 1px solid #333;
+  transition: background-color 0.2s;
+}
+
+#submissionsTable tbody tr:nth-child(even) {
+  background: #141414;
+}
+
+#submissionsTable tbody tr:hover {
+  background-color: #1a1a1a;
+}
+
+#submissionsTable tbody td {
+  padding: 12px 16px;
+  font-size: 0.875rem;
+  color: #e0e0e0;
+}
+
+/* Empty state */
+#submissionsTable tbody tr td[colspan] {
+  text-align: center;
+  padding: 3rem;
+  color: #6b7280;
+  font-style: italic;
+}
+
+/* ============================================
+   STATUS BADGES
+   ============================================ */
+
+.status {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.status.pending {
+  color: #fbbf24;
+}
+
+.status.under-review {
+  color: #3b82f6;
+}
+
+.status.processed {
+  color: #10b981;
+}
+
+.status.dismissed {
+  color: #ef4444;
+}
+
+/* ============================================
+   SEVERITY BADGES
+   ============================================ */
+
+.severity-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* IMPORTANT: Hide severity badges for Pending and Under Review statuses */
+tr:has(.status.pending) .severity-badge,
+tr:has(.status.under-review) .severity-badge,
+.status.pending ~ .severity-badge,
+.status.under-review ~ .severity-badge {
+  display: none !important;
+}
+
+/* Show a placeholder dash for hidden severity */
+tr:has(.status.pending) td:has(.severity-badge):empty::before,
+tr:has(.status.under-review) td:has(.severity-badge):empty::before {
+  content: '—';
+  color: #6b7280;
+  font-style: italic;
+}
+
+.severity-badge.severity-low {
+  color: #10b981;
+}
+
+.severity-badge.severity-medium {
+  color: #fbbf24;
+}
+
+.severity-badge.severity-high {
+  color: #ef4444;
+}
+
+/* ============================================
+   ACTION BUTTONS IN TABLE
+   ============================================ */
+
+#submissionsTable button {
+  padding: 8px 12px;
+  margin: 0 0.25rem;
+  border: 1px solid;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* View button - Blue */
+#submissionsTable button:first-child {
+  background: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+  border-color: #3b82f6;
+}
+
+#submissionsTable button:first-child:hover {
+  background: rgba(59, 130, 246, 0.2);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+/* Process button - Green */
+#submissionsTable button:nth-child(2) {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+  border-color: #10b981;
+}
+
+#submissionsTable button:nth-child(2):hover {
+  background: rgba(16, 185, 129, 0.2);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+/* Disabled button */
+#submissionsTable button:disabled {
+  background: rgba(107, 114, 128, 0.1);
+  color: #6b7280;
+  border-color: #6b7280;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+#submissionsTable button:disabled:hover {
+  transform: none;
+  box-shadow: none;
+  background: rgba(107, 114, 128, 0.1);
+}
+
+/* Material Icons in buttons */
+#submissionsTable button .material-symbols-outlined {
+  font-size: 16px;
+  vertical-align: middle;
+}
+
+/* ============================================
+   MODAL OVERLAY
+   ============================================ */
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.3s ease;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal[style*="display: block"],
+.modal.show {
+  display: flex !important;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ============================================
+   MODAL CONTENT
+   ============================================ */
+
+.modal-content {
+  background: #1a1a1a;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 12px;
+  width: 95%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: slideUp 0.3s ease;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  margin: 20px;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ============================================
+   MODAL HEADER
+   ============================================ */
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(51, 51, 51, 0.8);
+  background: rgba(13, 31, 13, 0.3);
+}
+
+.modal-header h2,
+.modal-content h2 {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.modal-header .material-symbols-outlined {
+  color: #10b981;
+  font-size: 24px;
+}
+
+.close,
+.close-btn {
+  color: #9ca3af;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  line-height: 1;
+  padding: 0;
+  background: none;
+  border: none;
+}
+
+.close:hover,
+.close:focus,
+.close-btn:hover,
+.close-btn:focus {
+  color: #ef4444;
+  transform: scale(1.1);
+}
+
+/* ============================================
+   MODAL BODY
+   ============================================ */
+
+.modal-body {
+  padding: 24px;
+  background: #1a1a1a;
+}
+
+/* ============================================
+   FORM STYLES
+   ============================================ */
+
+#processForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 24px;
+  background: #1a1a1a;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  display: block;
+  color: #e0e0e0;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.form-group label::after {
+  content: ' *';
+  color: #ef4444;
+  display: none;
+}
+
+.form-group label:has(+ select[required])::after,
+.form-group label:has(+ input[required])::after {
+  display: inline;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea,
+#processForm input[type="text"],
+#processForm select,
+#processForm textarea {
+  width: 100%;
+  padding: 12px 16px;
+  background: #222;
+  border: 1px solid #333;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 14px;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+.form-group select,
+#processForm select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ffffff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 40px;
+}
+
+.form-group select option,
+#processForm select option {
+  background: #1a1a1a;
+  color: #ffffff;
+  padding: 10px;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus,
+#processForm input[type="text"]:focus,
+#processForm select:focus,
+#processForm textarea:focus {
+  outline: none;
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder,
+#processForm input::placeholder,
+#processForm textarea::placeholder {
+  color: #6b7280;
+}
+
+.form-group input:disabled,
+.form-group select:disabled,
+.form-group textarea:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #1a1a1a;
+}
+
+.form-group input[readonly],
+.form-group select[readonly],
+.form-group textarea[readonly],
+#processForm input[readonly],
+#processForm textarea[readonly] {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #9ca3af;
+  cursor: default;
+  border-color: #2a2a2a;
+}
+
+.form-group textarea,
+#processForm textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* ============================================
+   FORM ACTIONS / BUTTONS
+   ============================================ */
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  padding-top: 20px;
+  margin-top: 20px;
+  border-top: 1px solid rgba(51, 51, 51, 0.5);
+}
+
+.form-actions button {
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Cancel/Secondary Button */
+.form-actions button[type="button"] {
+  background: #333;
+  color: #fff;
+  border: 1px solid #444;
+}
+
+.form-actions button[type="button"]:hover {
+  background: #444;
+  border-color: #555;
+  transform: translateY(-1px);
+}
+
+/* Submit/Primary Button */
+.form-actions button[type="submit"],
+.form-actions .submit-btn,
+.btn-primary,
+#processForm button[type="submit"] {
+  background: #10b981;
+  color: #000000;
+  border: none;
+}
+
+.form-actions button[type="submit"]:hover,
+.form-actions .submit-btn:hover,
+.btn-primary:hover,
+#processForm button[type="submit"]:hover {
+  background: #059669;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.form-actions button[type="submit"]:active,
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* ============================================
+   MODAL FOOTER
+   ============================================ */
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 16px 24px;
+  border-top: 1px solid rgba(51, 51, 51, 0.8);
+  background: rgba(13, 31, 13, 0.2);
+}
+
+/* ============================================
+   ALERT/NOTIFICATION STYLES
+   ============================================ */
+
+.alert {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 10000;
+  animation: slideInRight 0.3s ease;
+  max-width: 400px;
+  border-left: 4px solid;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.alert.success {
+  background: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+  border-color: #10b981;
+}
+
+.alert.error {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  border-color: #ef4444;
+}
+
+.alert.warning {
+  background: rgba(251, 191, 36, 0.2);
+  color: #fbbf24;
+  border-color: #fbbf24;
+}
+
+.alert.info {
+  background: rgba(59, 130, 246, 0.2);
+  color: #3b82f6;
+  border-color: #3b82f6;
+}
+
+/* ============================================
+   LOADING STATE
+   ============================================ */
+
+.loading {
+  text-align: center;
+  padding: 3rem;
+  color: #6b7280;
+}
+
+.loading::after {
+  content: '...';
+  animation: dots 1.5s steps(4, end) infinite;
+}
+
+@keyframes dots {
+  0%, 20% {
+    content: '.';
+  }
+  40% {
+    content: '..';
+  }
+  60%, 100% {
+    content: '...';
+  }
+}
+
+/* ============================================
+   SCROLLBAR STYLES
+   ============================================ */
+
+.modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background: #444;
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+.text-center {
+  text-align: center;
+}
+
+.text-muted {
+  color: #6b7280;
+}
+
+.mt-1 {
+  margin-top: 0.5rem;
+}
+
+.mt-2 {
+  margin-top: 1rem;
+}
+
+.mb-1 {
+  margin-bottom: 0.5rem;
+}
+
+.mb-2 {
+  margin-bottom: 1rem;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ============================================
+   TABLE ACTIONS CELL
+   ============================================ */
+
+#submissionsTable td:last-child {
+  white-space: nowrap;
+}
+
+/* ============================================
+   CONCERN PREVIEW (truncated text)
+   ============================================ */
+
+.concern-preview {
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ============================================
+   HOVER EFFECTS
+   ============================================ */
+
+button:not(:disabled) {
+  position: relative;
+  overflow: hidden;
+}
+
+button:not(:disabled)::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+button:not(:disabled):active::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 768px) {
+  .container {
+    padding: 16px 20px;
+  }
+
+  .filters {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: stretch;
+  }
+
+  .filters input[type="text"] {
+    max-width: 100%;
+  }
+
+  #submissionsTable {
+    font-size: 13px;
+  }
+
+  #submissionsTable thead th,
+  #submissionsTable tbody td {
+    padding: 8px 12px;
+  }
+
+  #submissionsTable button {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+
+  .modal-content {
+    padding: 0;
+    width: 95%;
+    margin: 10px;
+  }
+
+  .modal-header {
+    padding: 16px 20px;
+  }
+
+  .modal-header h2 {
+    font-size: 18px;
+  }
+
+  #processForm,
+  .modal-body {
+    padding: 20px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .stats-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .form-actions {
+    flex-direction: column-reverse;
+  }
+
+  .form-actions button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .container h1 {
+    font-size: 1.5rem;
+  }
+
+  .stat-card h3 {
+    font-size: 1.5rem;
+  }
+
+  table {
+    font-size: 12px;
+  }
+
+  th, td {
+    padding: 6px 10px;
+  }
+}

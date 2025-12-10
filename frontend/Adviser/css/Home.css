@@ -1,0 +1,988 @@
+/*Teacher/Adviser Home.css - ENHANCED RESPONSIVE VERSION*/
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #0d1f0d;
+  background-attachment: fixed;
+  color: #ffffff;
+  display: flex;
+  min-height: 100vh;
+  background-image: 
+    linear-gradient(to right, rgba(34, 197, 94, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(34, 197, 94, 0.1) 1px, transparent 1px);
+  background-size: 4rem 4rem;
+  animation: backgroundPan 40s linear infinite;
+}
+
+h1, h2, h3, h4, h5, h6,
+.logo-title,
+.page-title,
+.nav-title,
+.modal-header h2 {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+h1, .page-title {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Body Text - Use Inter for readability */
+p, span, div, td, th, input, select, textarea, label {
+  font-family: 'Inter', sans-serif;
+  letter-spacing: -0.01em;
+}
+
+/* Navigation Items */
+.nav-title {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.nav-subtitle {
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0;
+  opacity: 0.85;
+}
+
+/* Logo Text */
+.logo-title {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.logo-subtitle {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+/* Section Titles */
+.nav-section-title,
+.performances,
+.procedures {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Buttons */
+button,
+.btn-primary,
+.btn-secondary,
+.btn-action,
+.add-student-btn {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+
+/* Table Headers */
+th {
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Table Data */
+td {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/* Form Labels */
+label {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+/* Form Inputs */
+input,
+select,
+textarea {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+input::placeholder,
+textarea::placeholder {
+  font-weight: 400;
+  opacity: 0.6;
+  letter-spacing: 0;
+}
+
+/* Status Badges */
+.status-badge,
+.severity-badge {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Modal Content */
+.modal-header h2 {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.modal-body {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* Info Boxes */
+.info-box,
+.upload-info {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.info-box strong {
+  font-weight: 700;
+}
+
+/* Student Count */
+.student-count {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* Dropdown Menu */
+.dropdown-content a {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* Referral Details */
+.detail-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.detail-value {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* Process Steps */
+.process {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* ------------------------------------------
+   4. MOBILE RESPONSIVE FONT ADJUSTMENTS
+   Add to @media queries in each CSS file
+   ------------------------------------------ */
+
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+  
+  h1, .page-title {
+    font-size: 22px;
+  }
+  
+  h2 {
+    font-size: 18px;
+  }
+  
+  h3 {
+    font-size: 16px;
+  }
+  
+  .nav-title {
+    font-size: 13px;
+  }
+  
+  .nav-subtitle {
+    font-size: 11px;
+  }
+  
+  button,
+  .btn-primary,
+  .btn-secondary {
+    font-size: 13px;
+  }
+  
+  th {
+    font-size: 11px;
+  }
+  
+  td {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 13px;
+  }
+  
+  h1, .page-title {
+    font-size: 20px;
+  }
+  
+  h2 {
+    font-size: 16px;
+  }
+  
+  .performances,
+  .procedures {
+    font-size: 16px;
+  }
+  
+  .process {
+    font-size: 15px;
+  }
+}
+
+/* Mobile Menu Toggle Button */
+.mobile-menu-toggle {
+  display: none;
+  position: fixed;
+  top: 10px;
+  left: 15px;
+  z-index: 2500;
+  background: #10b981;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 16px;
+  cursor: pointer;
+  color: #000;
+  font-size: 20px;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-toggle:hover {
+  background: #059669;
+  transform: scale(1.05);
+}
+
+.mobile-menu-toggle:active {
+  transform: scale(0.95);
+}
+
+/* Sidebar Overlay for Mobile */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1999;
+  backdrop-filter: blur(2px);
+}
+
+.sidebar-overlay.active {
+  display: block;
+}
+
+/* ===== SIDEBAR STYLES ===== */
+.sidebar {
+  width: 280px;
+  background-color: rgba(13, 31, 13, 0.95);
+  backdrop-filter: blur(10px);
+  border-right: 1px solid rgba(31, 31, 31, 0.5);
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  position: fixed;
+  height: 100vh;
+  overflow-y: auto;
+  animation: slideIn 0.6s ease forwards;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 3px;
+
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.logo-subtitle {
+  font-size: 11px;
+  color: #6b7280;
+  line-height: 1.2;
+}
+
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nav-section-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: #6b7280;
+  letter-spacing: 0.05em;
+  padding: 8px 12px;
+  margin-bottom: 4px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #9ca3af;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.nav-item:hover {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+.nav-item.active {
+  background-color: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.3);
+  color: #10b981;
+}
+
+.nav-icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.nav-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nav-title {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.nav-subtitle {
+  font-size: 12px;
+  color: #6b7280;
+  line-height: 1.3;
+}
+
+.nav-item.active .nav-subtitle {
+  color: #059669;
+}
+
+/* ===== MAIN CONTENT ===== */
+.main-content {
+  margin-left: 280px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  animation: fadeUp 0.8s ease 0.3s forwards;
+  opacity: 0;
+  transition: margin-left 0.3s ease;
+}
+
+/* Header */
+.header {
+  background-color: #0d1f0d;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(31, 31, 31, 0.5);
+  padding: 20px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #10b981;
+}
+
+/* Profile Icon */
+.user-profile {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: visible;
+}
+
+.profile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+/* Dropdown */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  z-index: 2000;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 45px;
+  background: #1a1a1a;
+  min-width: 220px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #10b981;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+  z-index: 3000;
+  color: #fff;
+}
+
+.dropdown-content a {
+  color:#10b981;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  background: #1a1a1a;
+}
+
+.dropdown-content a:hover {
+  background: #10b981;
+  color: #ffffff;
+  transition: 0.2s;
+}
+
+.dropdown.show .dropdown-content {
+  display: block;
+}
+
+/* List Students Section */
+.list-students {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(7, 1fr);
+  gap: 10px;
+  padding: 20px 25px 40px 25px;
+}
+    
+.performances {
+  grid-column: span 5 / span 5;
+  grid-column-start: 1;
+  grid-row-start: 1;
+  height: 10vh;
+  background-color: #1a1a1a;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  text-align: center;
+  color: #ccc;
+  padding-top: 10px;
+  font-size: 28px;
+  font-weight: 500;
+  border: 1px solid #0da773;
+}
+
+.students-referral {
+  grid-column: span 5 / span 5;
+  grid-row: span 3 / span 3;
+  grid-column-start: 1;
+  grid-row-start: 2;
+  background-color: #1a1a1a;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  height: 50vh;
+  border-radius: 10px;
+  border: 1px solid #0da773;
+  margin-top: -15px;
+}
+
+/* Table */
+.table-container {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+thead {
+  background: #1a1a1a;
+  color: #10b981;
+}
+
+th, td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #333;
+  color: #e0e0e0;
+}
+
+tr:nth-child(even) {
+  background: #141414;
+}
+
+.btn-view-status {
+  padding: 8px 13px;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background .3s;
+}
+
+.procedures {
+  grid-column: span 5 / span 5;
+  grid-column-start: 1;
+  grid-row-start: 5;
+  background-color: #1a1a1a;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  height: 10vh;
+  border-radius: 10px;
+  text-align: center;
+  color: #ccc;
+  padding-top: 10px;
+  font-size: 28px;
+  font-weight: 500;
+  margin-top: 15px;
+  border: 1px solid #0da773;
+}
+
+.step-1, .step-2, .step-3, .step-4, .step-5 {
+  grid-row: span 2 / span 2;
+  background-color: #1a1a1a;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+  border: 1px solid #0da773;
+}
+
+.step-1 { grid-column-start: 1; grid-row-start: 6; }
+.step-2 { grid-column-start: 2; grid-row-start: 6; }
+.step-3 { grid-column-start: 3; grid-row-start: 6; }
+.step-4 { grid-column-start: 4; grid-row-start: 6; }
+.step-5 { grid-column-start: 5; grid-row-start: 6; }
+
+.process {
+  text-align: center;
+  padding: 45px 0 20px 0;
+  opacity: 0.6;
+  font-size: 20px;
+}
+
+.step-1 span, .step-2 span, .step-3 span, .step-4 span, .step-5 span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.6;
+  font-size: 60px;
+}
+
+.step-popup {
+  position: absolute;
+  bottom: 110%; 
+  left: 50%;
+  transform: translateX(-50%);
+  background: #0d1f0d;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  border: 1px solid #10b981;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  transition: opacity .25s ease;
+  z-index: 5;
+}
+
+.step-1:hover .step-popup,
+.step-2:hover .step-popup,
+.step-3:hover .step-popup,
+.step-4:hover .step-popup,
+.step-5:hover .step-popup {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Add this to your StudentProfile.css file to fix the status badges */
+
+/* Status Badge Styling - Updated to match Home.css */
+.status-badge {
+  display: inline-block;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 800;
+  text-align: center;
+  cursor: default;
+  transition: all 0.3s ease;
+  text-transform: capitalize;
+  letter-spacing: 0.3px;
+}
+
+/* Status Colors - Matching the style from Home.css */
+.status-pending {
+  color: #fbbf24;
+}
+
+.status-under-review {
+  color: #3b82f6;
+}
+
+.status-for-consultation {
+  color: #9333ea;
+}
+
+.status-complete {
+  color: #10b981;
+}
+
+/* Optional: Add hover effect */
+.status-badge:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive adjustments for status badges */
+@media (max-width: 768px) {
+  .status-badge {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .status-badge {
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+}
+
+/* Animations */
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes backgroundPan {
+  0% { background-position: 0 0; }
+  100% { background-position: 200px 200px; }
+}
+
+/* ===== RESPONSIVE STYLES ===== */
+
+/* Tablet View (768px and below) */
+@media (max-width: 768px) {
+
+  /* Show mobile menu toggle */
+  .mobile-menu-toggle {
+    display: block;
+  }
+
+  /* Hide sidebar by default on mobile */
+  .sidebar {
+    position: fixed;
+    left: -280px;
+    width: 280px;
+    height: 100vh;
+    transition: left 0.3s ease;
+    z-index: 2000;
+  }
+
+  /* Show sidebar when active */
+  .sidebar.mobile-active {
+    left: 0;
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Main content adjustments */
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  /* Header adjustments */
+  .header {
+    padding: 16px 20px;
+    padding-left: 60px;
+  }
+
+  .page-title {
+    font-size: 18px;
+    margin-left: 20px;
+  }
+
+  .user-profile {
+    width: 35px;
+    height: 35px;
+  }
+
+  /* Grid adjustments */
+  .list-students {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    padding: 15px;
+    gap: 15px;
+  }
+
+  .performances {
+    grid-column: 1;
+    grid-row: auto;
+    height: auto;
+    min-height: 60px;
+    font-size: 22px;
+    padding: 15px 10px;
+  }
+
+  .students-referral {
+    grid-column: 1;
+    grid-row: auto;
+    height: auto;
+    min-height: 400px;
+    margin-top: 0;
+  }
+
+  .procedures {
+    grid-column: 1;
+    grid-row: auto;
+    height: auto;
+    min-height: 60px;
+    font-size: 22px;
+    margin-top: 0;
+    padding: 15px 10px;
+  }
+
+  .step-1, .step-2, .step-3, .step-4, .step-5 {
+    grid-column: 1;
+    grid-row: auto;
+    min-height: 180px;
+  }
+
+  .process {
+    padding: 20px 0 10px 0;
+    font-size: 18px;
+  }
+
+  .step-1 span, .step-2 span, .step-3 span, .step-4 span, .step-5 span {
+    font-size: 5px;
+  }
+
+  /* Table responsive */
+  th, td {
+    padding: 10px 8px;
+    font-size: 13px;
+  }
+
+  .btn-view-status {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  /* Dropdown adjustment */
+  .dropdown-content {
+    min-width: 180px;
+  }
+
+  .dropdown-content a {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+  
+}
+
+/* Mobile View (480px and below) */
+@media (max-width: 480px) {
+  .header {
+    padding: 12px 15px;
+    margin-left: 40px;
+  }
+
+  .page-title {
+    font-size: 18px;
+  }
+
+  .list-students {
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .performances, .procedures {
+    font-size: 18px;
+    padding: 12px 8px;
+    min-height: 50px;
+  }
+
+  .students-referral {
+    min-height: 350px;
+  }
+
+  .process {
+    font-size: 16px;
+    padding: 15px 0 8px 0;
+  }
+
+  .step-1 span, .step-2 span, .step-3 span, .step-4 span, .step-5 span {
+    font-size: 20px;
+  }
+
+  .step-1, .step-2, .step-3, .step-4, .step-5 {
+    min-height: 20px;
+  }
+
+  th, td {
+    padding: 8px 6px;
+    font-size: 12px;
+  }
+
+  .btn-view-status {
+    padding: 5px 8px;
+    font-size: 8px;
+  }
+
+  .user-profile {
+    width: 35px;
+    height: 35px;
+  }
+
+  .dropdown-content {
+    min-width: 160px;
+  }
+
+  .logo-title {
+    font-size: 14px;
+  }
+
+  .logo-subtitle {
+    font-size: 10px;
+  }
+
+  .nav-title {
+    font-size: 13px;
+  }
+
+  .nav-subtitle {
+    font-size: 11px;
+  }
+}

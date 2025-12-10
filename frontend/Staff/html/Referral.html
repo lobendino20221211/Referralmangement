@@ -1,0 +1,370 @@
+<!-- Counselor/Staff Referral.html - GROUPED BY STUDENT VIEW -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Counselor Portal - Referrals</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/Referral.css">
+  <link rel="stylesheet" href="../../assets/css/custom-alert.css">
+  <style>
+    .edit-badge {
+      display: inline-block;
+      background: #3b82f6;
+      color: white;
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-left: 6px;
+      font-weight: 600;
+      vertical-align: middle;
+    }
+    .referral-count-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #3b82f6;
+      color: white;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-weight: 600;
+      min-width: 20px;
+      margin-left: 8px;
+    }
+    .latest-date {
+      color: #6b7280;
+      font-size: 0.875rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar Navigation -->
+  <aside class="sidebar">
+    <div class="logo-container">
+      <div class="logo-icon">
+        <span class="material-symbols-outlined">psychology</span>
+      </div>
+      <div class="logo-text">
+        <div class="logo-title">Counselor Portal</div>
+        <div class="logo-subtitle">Management System</div>
+      </div>
+    </div>
+
+    <nav class="nav-menu">
+      <div class="nav-section-title">NAVIGATION</div>
+      <a href="Dashboard.html" class="nav-item">
+        <span class="material-symbols-outlined">dashboard</span>
+        <div class="nav-text">
+          <div class="nav-title">Dashboard</div>
+          <div class="nav-subtitle">Overview and statistics</div>
+        </div>
+      </a>
+      <a href="StudentSubmissions.html" class="nav-item">
+        <span class="material-symbols-outlined">assignment_ind</span>
+        <div class="nav-text">
+          <div class="nav-title">Student Submissions</div>
+          <div class="nav-subtitle">View all students submission</div>
+        </div>
+      </a>
+      <a href="Referral.html" class="nav-item active">
+        <span class="material-symbols-outlined">article</span>
+        <div class="nav-text">
+          <div class="nav-title">Referrals</div>
+          <div class="nav-subtitle">Manage student referrals</div>
+        </div>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Header -->
+    <header class="header">
+      <h1 class="page-title">Student Referrals</h1>
+      <div class="user-profile">
+        <div class="dropdown" id="profileDropdown">
+          <img src="your-profile.jpg" 
+               alt="User Profile" 
+               class="profile-image account-icon" 
+               id="profileButton">
+          <div class="dropdown-content">
+            <a href="ProfileSettings.html"><span class="material-symbols-outlined">manage_accounts</span>Profile Settings</a>
+            <a href="../../pages/LoginForm.html"><span class="material-symbols-outlined">logout</span>Logout</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Info Section -->
+    <section class="welcome-section" style="margin-bottom: 2rem;">
+      <div class="info-box" style="background: #eff6ff; border-left: 4px solid #3b82f6;">
+        <p style="margin: 0; color: #1e40af;">
+          <strong>📋 Student Referrals Overview</strong>
+        </p>
+        <p style="margin: 0.5rem 0 0 0; color: #1e40af; font-size: 0.9rem;">
+          Below are students with referrals from advisers. Each row shows the student's most recent referral. Click "View All Referrals" to see the complete history for a student.
+        </p>
+      </div>
+    </section>
+<!-- Referral List (Grouped by Student) -->
+    <section class="student-list">
+      <div class="list-card">
+        <div class="list-filters">
+          <input type="text" id="searchInput" placeholder="Search students...">
+          <div class="student-count">
+            <span class="material-symbols-outlined">groups</span>
+            <span id="studentCount">0</span> Students with Referrals
+          </div>
+        </div>
+      
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Student ID</th>
+                <th>Student Name</th>
+                <th>
+                  <select id="levelFilter" class="filter-dropdown">
+                    <option value="all">All Levels</option>
+                    <option value="Elementary">Elementary</option>
+                    <option value="JHS">JHS</option>
+                    <option value="SHS">SHS</option>
+                  </select>
+                </th>
+                <th>
+                  <select id="gradeFilter" class="filter-dropdown">
+                    <option value="all">All Grades</option>
+                  </select>
+                </th>
+                <th>Total Referrals</th>
+                <th>
+                  <select id="statusFilter" class="filter-dropdown">
+                    <option value="all">All Status</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Under Review">Under Review</option>
+                    <option value="For Consultation">For Consultation</option>
+                    <option value="Complete">Complete</option>
+                  </select>
+                </th>
+                <th>
+                  <select id="severityFilter" class="filter-dropdown">
+                    <option value="all">All Severity</option>
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                  </select>
+                </th>
+                <th>Latest Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="referralTable">
+              <tr>
+                <td colspan="9" style="text-align:center;">Loading referrals...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- View All Referrals Modal -->
+  <div id="viewAllReferralsModal" class="modal">
+    <div class="modal-content" style="max-width: 1000px;">
+      <div class="modal-header">
+        <h2>
+          <span class="material-symbols-outlined">assignment</span>
+          All Referrals - <span id="allRef-studentName"></span>
+        </h2>
+        <span class="close" onclick="closeAllReferralsModal()">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Referral ID</th>
+                <th>Date of Interview</th>
+                <th>Reason</th>
+                <th>Status</th>
+                <th>Severity</th>
+                <th>Referred By</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="allReferralsTable">
+              <tr>
+                <td colspan="7" style="text-align:center;">Loading...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-primary" onclick="closeAllReferralsModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- View/Update Single Referral Modal -->
+  <div id="viewReferralModal" class="modal">
+    <div class="modal-content" style="max-width: 800px;">
+      <div class="modal-header">
+        <h2>
+          <span class="material-symbols-outlined">article</span>
+          Referral Details
+        </h2>
+        <span class="close" onclick="closeViewModal()">&times;</span>
+      </div>
+      <div class="modal-body">
+        <form id="updateStatusForm">
+          <input type="hidden" id="viewReferralId">
+          
+          <!-- Student Information -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="view-referralId-display">Referral ID</label>
+              <input type="text" id="view-referralId-display" readonly>
+            </div>
+            <div class="form-group">
+              <label for="view-studentId">
+                Student ID 
+                <span id="studentIdEditBadge" class="edit-badge" style="display: none;">EDITABLE</span>
+              </label>
+              <input type="text" id="view-studentId" placeholder="Enter Student ID">
+            </div>
+            <div class="form-group">
+              <label for="view-studentName">
+                Student Name 
+                <span id="studentNameEditBadge" class="edit-badge" style="display: none;">EDITABLE</span>
+              </label>
+              <input type="text" id="view-studentName">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="view-level">
+                Level
+                <span id="levelEditBadge" class="edit-badge" style="display: none;">EDITABLE</span>
+              </label>
+              <select id="view-level">
+                <option value="">Select Level</option>
+                <option value="Elementary">Elementary</option>
+                <option value="JHS">Junior High School</option>
+                <option value="SHS">Senior High School</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="view-grade">
+                Grade
+                <span id="gradeEditBadge" class="edit-badge" style="display: none;">EDITABLE</span>
+              </label>
+              <input type="text" id="view-grade" placeholder="e.g., Grade 7, Grade 11">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="view-dateOfInterview">Date of Interview</label>
+              <input type="date" id="view-dateOfInterview" readonly>
+            </div>
+            <div class="form-group">
+              <label for="view-adviser">
+                Referred By
+                <span id="adviserEditBadge" class="edit-badge" style="display: none;">EDITABLE</span>
+              </label>
+              <input type="text" id="view-adviser">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="view-reason">Reason for Referral</label>
+            <input type="text" id="view-reason" readonly>
+          </div>
+
+          <div class="form-group">
+            <label for="view-description">Description</label>
+            <textarea id="view-description" rows="3" readonly></textarea>
+          </div>
+
+          <!-- Editable Fields -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="view-status">Status</label>
+              <select id="view-status" required>
+                <option value="Pending">Pending</option>
+                <option value="Under Review">Under Review</option>
+                <option value="For Consultation">For Consultation</option>
+                <option value="Complete">Complete</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="view-severity">Severity Level</label>
+              <select id="view-severity" required>
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Category Dropdown -->
+          <div class="form-group">
+            <label for="view-category">
+              Category
+              <span style="color: #9ca3af; font-weight: normal; font-size: 0.875rem;"></span>
+            </label>
+            <select id="view-category">
+              <option value="">Select Category</option>
+              <!-- Options will be populated dynamically by JavaScript -->
+            </select>
+          </div>
+
+          <!-- Notes Section -->
+          <div class="form-group" id="notesSection" style="display: none;">
+            <label for="view-notes">Consultation Notes *</label>
+            <textarea id="view-notes" rows="4" placeholder="Add notes about the consultation..."></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" id="cancelViewModalBtn" class="btn-secondary">Cancel</button>
+            <button type="submit" class="btn-primary">Update Referral</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div id="deleteConfirmModal" class="modal">
+    <div class="modal-content" style="max-width: 500px;">
+      <div class="modal-header">
+        <h2>
+          <span class="material-symbols-outlined">warning</span>
+          Confirm Delete
+        </h2>
+        <span class="close" onclick="closeDeleteModal()">&times;</span>
+      </div>
+      <div class="modal-body">
+        <p id="deleteMessage" style="padding: 20px; text-align: center;"></p>
+      </div>
+      <div class="modal-footer">
+        <button id="cancelDeleteBtn" class="btn-secondary">Cancel</button>
+        <button id="confirmDeleteBtn" class="btn-danger">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Load Scripts -->
+  <script src="../../api/api-client.js"></script>
+  <script src="../../assets/js/custom-alert.js"></script>
+  <script src="../../js/logout.js"></script>
+  <script src="../js/Referral.js"></script>
+</body>
+</html>
