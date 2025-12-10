@@ -2,7 +2,9 @@
 // COMPLETE API-CLIENT.JS - With Student Submissions + All Endpoints
 // ============================================
 
-const API_BASE_URL = "http://localhost:3000/api";
+const API_BASE_URL = window.location.hostname === 'localhost' 
+  ? "http://localhost:3000/api"
+  : `${window.location.origin}/api`;
 
 class APIClient {
   constructor() {
@@ -438,4 +440,5 @@ if (typeof module !== 'undefined' && module.exports) {
 if (typeof window !== 'undefined') {
   window.apiClient = apiClient;
   console.log("✅ apiClient attached to window object");
+
 }
