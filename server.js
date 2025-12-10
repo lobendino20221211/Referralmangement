@@ -16,6 +16,8 @@ const adviserRoutes = require('./routes/advisers');
 const publicReferralRoutes = require('./routes/publicReferrals');
 const studentSubmissionsRouter = require('./routes/studentSubmissions');
 const solutionRoutes = require('./routes/solutionRoutes');
+const aiPrescriptionRoutes = require('./routes/aiPrescriptions');
+const analyticsRoutes = require('./routes/analytics');
 
 const { auth, authorizeRoles } = require('./middleware/auth');
 
@@ -51,8 +53,7 @@ app.use('/api', express.static(path.join(__dirname, '../frontend/api')));
 app.use('/Adviser', express.static(path.join(__dirname, '../frontend/Adviser')));
 app.use('/Staff', express.static(path.join(__dirname, '../frontend/Staff')));
 
-
-// ✅ NEW: Serve public student form directory
+// Serve public student form directory
 app.use('/student-form', express.static(path.join(__dirname, '../public_student_form'), {
   setHeaders: (res, filePath) => {
     if (filePath.endsWith('.js')) {
@@ -63,7 +64,7 @@ app.use('/student-form', express.static(path.join(__dirname, '../public_student_
   }
 }));
 
-// ===== API routes (MUST come AFTER static file middleware to avoid conflicts) =====
+// ===== API routes =====
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/referrals', referralRoutes);
@@ -73,22 +74,20 @@ app.use('/api/advisers', adviserRoutes);
 app.use('/api/student-submissions', studentSubmissionsRouter);
 app.use('/api/public-referrals', publicReferralRoutes);
 app.use('/api/solutions', solutionRoutes);
-
-// Import the AI prescription routes
-const aiPrescriptionRoutes = require('./routes/aiPrescriptions');
-
-// Register the routes (add this with your other routes)
 app.use('/api/ai-prescriptions', aiPrescriptionRoutes);
+app.use('/api/analytics', analyticsRoutes);
 
-// Make sure you have dotenv configured at the top
-require('dotenv').config();
+// ===== HTML Routes =====
+// Root route - Login Page
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/pages/LoginForm.html'));
+});
 
-// ===== Default route - Login Page =====
+// Login Form
 app.get('/LoginForm.html', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/pages/LoginForm.html'));
 });
 
-// ===== Protected HTML Routes =====
 // Admin Dashboard
 app.get('/Dashboard.html', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/pages/Dashboard.html'));
@@ -112,11 +111,6 @@ app.get('/ProfileSettings.html', (req, res) => {
 // Change Password
 app.get('/ChangePassword.html', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/pages/ChangePassword.html'));
-});
-
-// Login Form
-app.get('/LoginForm.html', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/pages/LoginForm.html'));
 });
 
 // Adviser Routes
@@ -170,10 +164,3 @@ app.listen(PORT, () => {
   console.log(`📂 Serving frontend from: ${path.join(__dirname, '../frontend')}`);
   console.log(`📋 Student form available at: http://localhost:${PORT}/student-form/Student_Form.html`);
 });
-
-// Import the analytics routes
-const analyticsRoutes = require('./routes/analytics');
-
-// Register the routes
-
-app.use('/api/analytics', analyticsRoutes);
